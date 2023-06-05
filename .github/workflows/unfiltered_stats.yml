@@ -41,6 +41,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
+        EXCLUDE: ${{ secrets.EXCLUDE }}
         EXCLUDE_FORKED_REPOS: false
         FILE_OUTPUT_SUFFIX: "_includes_all"
 
