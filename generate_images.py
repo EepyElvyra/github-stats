@@ -36,7 +36,11 @@ async def generate_overview(s: Stats) -> None:
         file = f"templates/overview{suffix}.svg"
     else:
         file = "templates/overview.svg"
-        
+    
+    if not os.path.exists(file):
+        os.mkfile(file)
+        open(file, "x").close()
+
     with open(file, "r") as f:
         output = f.read()
 
@@ -64,6 +68,10 @@ async def generate_languages(s: Stats) -> None:
         file = f"templates/languages{suffix}.svg"
     else:
         file = "templates/languages.svg"
+
+    if not os.path.exists(file):
+        os.mkfile(file)
+        open(file, "x").close()
 
     with open(file, "r") as f:
         output = f.read()
