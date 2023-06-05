@@ -41,7 +41,7 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        EXCLUDED: "interactions-py/interactions.py,night/betterttv"
+        EXCLUDED: "night/betterttv,interactions-py/interactions.py"
         EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
         EXCLUDE_FORKED_REPOS: false
 
