@@ -32,15 +32,7 @@ async def generate_overview(s: Stats) -> None:
     Generate an SVG badge with summary statistics
     :param s: Represents user's GitHub statistics
     """
-    if suffix := os.getenv("FILE_OUTPUT_SUFFIX"):
-        file = f"templates/overview{suffix}.svg"
-    else:
-        file = "templates/overview.svg"
-    
-    if not os.path.exists(file):
-        open(file, "x").close()
-
-    with open(file, "r") as f:
+    with open("templates/overview.svg", "r") as f:
         output = f.read()
 
     output = re.sub("{{ name }}", await s.name, output)
@@ -52,10 +44,12 @@ async def generate_overview(s: Stats) -> None:
     output = re.sub("{{ views }}", f"{await s.views:,}", output)
     output = re.sub("{{ repos }}", f"{len(await s.repos):,}", output)
 
-    if suffix := os.getenv("FILE_OUTPUT_SUFFIX"):
-        file = f"generated/overview{suffix}.svg"
+    if os.getenv("EXCLUDED") == "night/betterttv,interactions-py/interactions.py":
+        file = f"generated/overview.svg"
+    elif os.getenv("EXCLUDED") == "night/betterttv":
+        file = "generated/overview_includes_interactions.svg"
     else:
-        file = "generated/overview.svg"
+        file = "generated/overview_includes_all.svg"
 
     generate_output_folder()
     with open(file, "w") as f:
@@ -67,16 +61,7 @@ async def generate_languages(s: Stats) -> None:
     Generate an SVG badge with summary languages used
     :param s: Represents user's GitHub statistics
     """
-
-    if suffix := os.getenv("FILE_OUTPUT_SUFFIX"):
-        file = f"templates/languages{suffix}.svg"
-    else:
-        file = "templates/languages.svg"
-
-    if not os.path.exists(file):
-        open(file, "x").close()
-
-    with open(file, "r") as f:
+    with open("templates/languages.svg", "r") as f:
         output = f.read()
 
     progress = ""
@@ -107,10 +92,12 @@ fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
     output = re.sub(r"{{ progress }}", progress, output)
     output = re.sub(r"{{ lang_list }}", lang_list, output)
 
-    if suffix := os.getenv("FILE_OUTPUT_SUFFIX"):
-        file = f"generated/languages{suffix}.svg"
+    if os.getenv("EXCLUDED") == "night/betterttv,interactions-py/interactions.py":
+        file = f"generated/languages.svg"
+    elif os.getenv("EXCLUDED") == "night/betterttv":
+        file = "generated/languages_includes_interactions.svg"
     else:
-        file = "generated/languages.svg"
+        file = "generated/languages_includes_all.svg"
     
     generate_output_folder()
     with open(file, "w") as f:

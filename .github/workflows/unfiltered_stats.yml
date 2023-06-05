@@ -43,7 +43,6 @@ jobs:
         EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
         EXCLUDE: ${{ secrets.EXCLUDE }}
         EXCLUDE_FORKED_REPOS: false
-        FILE_OUTPUT_SUFFIX: "_includes_all"
 
     # Commit all changed files to the repository
     - name: Commit to the repo
