@@ -1,11 +1,10 @@
-name: Generate Stats Images
+name: Generate Stats Images With All Contributions Stats
 
 on:
   push:
     branches: [ master ]
   schedule:
-    - cron: "5 0 * * *"
-    - cron: "5 12 * * *"
+    - cron: "5 15 * * *"
   workflow_dispatch:
 
 permissions:
@@ -41,9 +40,9 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        EXCLUDED: "night/betterttv"
         EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
         EXCLUDE_FORKED_REPOS: false
+        FILE_OUTPUT_SUFFIX: "_includes_all"
 
     # Commit all changed files to the repository
     - name: Commit to the repo
