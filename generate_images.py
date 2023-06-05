@@ -38,7 +38,6 @@ async def generate_overview(s: Stats) -> None:
         file = "templates/overview.svg"
     
     if not os.path.exists(file):
-        os.mkfile(file)
         open(file, "x").close()
 
     with open(file, "r") as f:
@@ -70,7 +69,6 @@ async def generate_languages(s: Stats) -> None:
         file = "templates/languages.svg"
 
     if not os.path.exists(file):
-        os.mkfile(file)
         open(file, "x").close()
 
     with open(file, "r") as f:
