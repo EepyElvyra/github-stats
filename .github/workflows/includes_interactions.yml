@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   schedule:
-    - cron: "4 12 * * *"
+    - cron: "5 12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,11 +17,6 @@ jobs:
     steps:
     # Check out repository under $GITHUB_WORKSPACE, so the job can access it
     - uses: actions/checkout@v3
-
-    - name: Sleep for 10s
-      uses: juliangruber/sleep-action@v2.0.0
-      with:
-        time: 60s
 
 
     # Run using Python 3.8 for consistency and aiohttp
@@ -54,6 +49,7 @@ jobs:
     # Commit all changed files to the repository
     - name: Commit to the repo
       run: |
+        git pull
         git config --global user.name "jstrieb/github-stats"
         git config --global user.email "github-stats[bot]@jstrieb.github.io"
         git add .
