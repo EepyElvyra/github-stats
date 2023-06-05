@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   schedule:
-    - cron: "5 15 * * *"
+    - cron: "3 15 * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,6 +17,11 @@ jobs:
     steps:
     # Check out repository under $GITHUB_WORKSPACE, so the job can access it
     - uses: actions/checkout@v3
+
+    - name: Sleep for 10s
+      uses: juliangruber/sleep-action@v2.0.0
+      with:
+        time: 120s
 
     # Run using Python 3.8 for consistency and aiohttp
     - name: Set up Python 3.8
