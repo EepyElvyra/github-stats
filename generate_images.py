@@ -52,6 +52,11 @@ async def generate_overview(s: Stats) -> None:
     output = re.sub("{{ views }}", f"{await s.views:,}", output)
     output = re.sub("{{ repos }}", f"{len(await s.repos):,}", output)
 
+    if suffix := os.getenv("FILE_OUTPUT_SUFFIX"):
+        file = f"generated/overview{suffix}.svg"
+    else:
+        file = "generated/overview.svg"
+
     generate_output_folder()
     with open(file, "w") as f:
         f.write(output)
@@ -102,6 +107,11 @@ fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
     output = re.sub(r"{{ progress }}", progress, output)
     output = re.sub(r"{{ lang_list }}", lang_list, output)
 
+    if suffix := os.getenv("FILE_OUTPUT_SUFFIX"):
+        file = f"generated/languages{suffix}.svg"
+    else:
+        file = "generated/languages.svg"
+    
     generate_output_folder()
     with open(file, "w") as f:
         f.write(output)
